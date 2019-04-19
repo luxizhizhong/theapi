@@ -1,0 +1,16 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #FAF7F0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.wrap {
+  padding: 3vw;
+}
+.text-up {
+  text-transform: capitalize;
+}
