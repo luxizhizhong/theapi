@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 // 路由信息 存放在 ./routes 目录下
 var indexRouter = require('./routes/index'); // home page
-var usersRouter = require('./routes/users'); // 用户接口
+var docsRoute = require('./routes/docs');
 
 var app = express();
 
@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.get('/docs',docsRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

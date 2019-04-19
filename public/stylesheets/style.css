@@ -14,3 +14,13 @@ a {
 .text-up {
   text-transform: capitalize;
 }
+.middle {
+  vertical-align: middle;
+}
+.text-diy {
+  padding-left: 1rem;
+  text-transform: uppercase;
+  background: linear-gradient(to right, red, blue);
+  -webkit-background-clip: text;
+  color: transparent;
+}
