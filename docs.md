@@ -1,3 +1,8 @@
+## utils
+> 意在便捷的使用`API`
+
+#### 时间
+_**get** /utils/time_
 ## 葫芦侠
 > by@[d1y](https://github.com/d1y) 2019.01.22 葫芦侠版本号: 3.5.0.83.3
 
@@ -113,8 +118,6 @@ $ curl http://localhost:3000/huluxia/tools?type=search&keyword=打工
 }
 ```
 
-
-
 #### 返回首页游戏
 
 > 参数
@@ -130,3 +133,25 @@ _**get** /huluxia/tools?type=game&keys=detail&app_id=110_
 #### 游戏(应用)评论(必须传入一个app_id)
 
 _**get** /huluxia/tools?type=game&keys=comment&app_id=110_
+
+#### 所有板块
+
+_**get** /huluxia/floor?type=category_
+
+**需要一提的是,有些板块无法访问,比如`我的关注`,还有`系统推荐`之类,需要自行`slice`**
+
+#### 热帖
+
+_**get** /huluxia/floor?type=hot_post_
+
+#### 板块(需要传递 cat_id)
+
+_**get** /huluxia/floor?cat_id=43_
+
+**在所有板块里有传递的 cat_id**
+
+#### 帖子(需要传递 post_id)
+
+_**get** /huluxia/floor?post_id=23_
+
+翻页功能未实现...

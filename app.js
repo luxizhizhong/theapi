@@ -7,6 +7,7 @@ const createError = require('http-errors'),
       indexRouter = require('./routes/index'),
       docsRoute = require('./routes/docs'),
       huluxiaRoute = require('./routes/huluxia'),
+      utilsRoute  = require('./routes/utils')
       app = express();
 
 // view engine setup
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.get('/docs',docsRoute);
 app.use('/huluxia',huluxiaRoute);
+app.use('/utils',utilsRoute)
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=> {

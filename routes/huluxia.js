@@ -7,8 +7,43 @@ const express = require('express'),
       hlxFloor = utils.hlxFloor
 router
   .get('/floor', (req, res, next)=> {
-    res.type('json')
-    res.send('routes is /huluxia/floor')
+    let q = req.query,
+        t = q.type || "",
+        r = res,
+        a = 'category',
+        b = 'hot_post'
+    {
+      if (t == a || t == b) {
+        utils.ajax({
+          url: `${hlxFloor}/category/list/ANDROID/2.0${hlxData}`,
+          success: data => {
+            data = JSON.parse(data)
+            if (t == a) {
+              r.send(JSON.stringify(data.categories))
+            } else if (t == b) {
+              r.send(JSON.stringify(data.postInfo))
+            }
+          },
+          err: () => r.send(err)
+        })
+      }
+      if (q['cat_id']) {
+        let id = q['cat_id']
+        utils.ajax({
+          url: `${hlxFloor}/post/list/ANDROID/2.1${hlxData}&cat_id=${id}`,
+          success: data => r.send(data),
+          err: () => r.send(err)
+        })
+      }
+      if (q['post_id']) {
+        let id = q['post_id']
+        utils.ajax({
+          url: `${hlxFloor}/post/detail/ANDROID/2.3${hlxData}&post_id=${id}`,
+          success: data => r.send(data),
+          err: () => r.send(err)
+        })
+      }
+    }
   })
   .get('/tools', (req, res, next)=> {
     let q = req.query,
@@ -65,7 +100,7 @@ router
               utils.ajax({
                 url: `${hlxTools}/game/comment/good/list/ANDROID/3.6${hlxData}&app_id=${id}`,
                 success: data => r.send(data),
-                err: () => r.send(err)
+                err: () => r.send(mes)
               })
             } else {
               r.send(msg)
