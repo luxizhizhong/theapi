@@ -1,3 +1,15 @@
+## 反向代理
+使用此接口可以反向代理,达到跨域的目的
+
+_**get** /proxy/**_
+
+> 栗子
+
+```console
+# /proxy后面是代理的接口地址
+curl http://localhost:3000/proxy/https://api.isoyu.com/index.php/api/News/banner
+```
+
 ## utils
 > 意在便捷的使用`API`
 
