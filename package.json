@@ -14,6 +14,7 @@
     "jade": "~1.11.0",
     "markdown-js": "^0.0.4",
     "morgan": "~1.9.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "simple-netease-cloud-music": "^0.4.4"
   }
 }

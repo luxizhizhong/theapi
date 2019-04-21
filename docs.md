@@ -1,3 +1,4 @@
+
 ## 反向代理
 使用此接口可以反向代理,达到跨域的目的
 
@@ -12,9 +13,51 @@ curl http://localhost:3000/proxy/https://api.isoyu.com/index.php/api/News/banner
 
 ## utils
 > 意在便捷的使用`API`
-
+ 
 #### 时间
 _**get** /utils/time_
+
+#### 网易云音乐
+直接获取音乐真实地址,需要传递歌曲`id`
+
+_**get** /utils/nem/dl?id=&_
+
+搜索音乐,需要传递`keywords`
+
+_**get** /utils/nem/search?keywords=&_
+
+歌单,需要传递歌单`id`
+
+_**get** /utils/nem/playlist?id=&_
+
+歌词,需要传递歌曲`id`
+
+_**get** /utils/nem/lyric?id=&_
+
+歌曲详情,需要传递歌曲`id`
+
+_**get** /utils/nem/song?id=&_
+
+#### 返回文本
+在有些地方,这个需求显得很有用
+意在直接返回文本,必须传入文本
+
+_**get** /utils/txt/&_
+
+#### markdown 在线预览(测试)
+markdown在下预览,我觉得是很实用的,所以就添加了这个接口
+(这个接口在测试,不稳定)
+需要传递`url`
+
+_**get** /utils/md?url=&_
+
+#### bing美图
+此接口可返回`bing`美图,一个是`json`接口,另一个直接`302`到真实链接
+
+_**get** /utils/bing_
+
+_**get** /utils/bing?type=img_ (直接返回图片)
+
 ## 葫芦侠
 > by@[d1y](https://github.com/d1y) 2019.01.22 葫芦侠版本号: 3.5.0.83.3
 
