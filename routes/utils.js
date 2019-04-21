@@ -2,7 +2,8 @@ const express = require('express'),
       router = express.Router(),
       ajax = require('../utils/http').ajax,
       request = require('request'),
-      nw = new (require('simple-netease-cloud-music'))
+      nw = new (require('simple-netease-cloud-music')),
+      diy = require('../utils/line')
 router
   .get('/time',(req,res,next)=> {
     let b = {}, d = new Date(),
@@ -96,6 +97,27 @@ router
         err: ()=> res.send('接口有问题或者服务器出错')
      })
   })
+  .get('/mm',(req,res,next)=> {
+    let q = req.query.v,
+        c = req.query.count
+    if (q == '1') {
+      res.redirect(302,`https://yantuz.cn/mmPic/index.php`)
+    } else if (q == '2') {
+      res.redirect(302,`https://api.isoyu.com/mm_images.php`)
+    } else if (q == '3') {
+      let random = ()=> Math.floor(Math.random() * (diy.length - 1))
+      if (isNaN(c)) {
+        res.send(JSON.stringify(diy)) 
+      } else {
+        let arr = []
+        for (let index = 0; index < c; index++) {
+          let r = random()
+          arr.push(diy[r])
+        }
+        res.send(JSON.stringify(arr))
+      }
+    }
+  })
 router.get('/',(req,res,next)=> {
   res.send(`<pre>
     ♐️ 工具系列,致力于提高效率
@@ -114,6 +136,11 @@ router.get('/',(req,res,next)=> {
       /txt/:txt            传递文字,并会返回文本,在某些需求里会有
       /md?url=&            在线预览 markdown 请传递一个url参数
       /bing[?type=img]     将会返回 bing 美图,若传递type=img参数,将会直接302跳转图片
+      /mm?v=&count=&       返回妹子图
+        v=1     妹子图(直接返回图片地址,img可直接调用)
+        v=2     也是妹子图(同上)
+        v=3     也是妹子图,不过是动漫(json数据)
+          count 返回数量,最多传递100个,最少传递5个
 
   </pre>`)
 })
