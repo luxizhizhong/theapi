@@ -1,9 +1,7 @@
 const express = require('express'),
       router = express.Router(),
       ajax = require('../utils/http').ajax,
-      request = require('request'),
-      nw = new (require('simple-netease-cloud-music')),
-      diy = require('../utils/line')
+      request = require('request')
 router
   .get('/time',(req,res,next)=> {
     let b = {}, d = new Date(),
@@ -22,6 +20,7 @@ router
     res.send(JSON.stringify(b))
   })
   .get('/nem/:type',(req,res,next)=> {
+    const nw = new (require('simple-netease-cloud-music'))
     let p = req.params,
         r = res,
         t = p.type,
@@ -54,6 +53,7 @@ router
     }
   })
   .get('/txt/:txt',(req,res,next)=> {
+    const diy = require('../utils/line')
     let txt = req.params.txt,
         r = res
     if (txt) {
@@ -118,6 +118,61 @@ router
       }
     }
   })
+  .get('/qq',(req,res,next)=> {
+    let q = req.query.number
+    if (q) {
+      res.redirect(302,`http://qlogo2.store.qq.com/qzone/${q}/${q}/100`)
+    } else res.send('请传递 number 参数')
+  })
+  .get('/pan',(req,res,next)=> {
+    let u = req.query.url,
+        v = req.query.v,
+        r = res
+    if (v == '1') {
+      ajax({
+        url: `https://node.pnote.net/public/pan?url=${u}`,
+        success: data=> r.send(data),
+        err: ()=> req.send('返回失败')
+      })
+    // 接口可能不可用!
+    } else if (v == '2'){
+      const p = (require('../utils/encode'))(u)
+      console.log(p)
+      request.post(p,(err,res,body)=> {
+        if (!err && res.statusCode == 200) {
+          r.send(body)
+        }
+      })
+    }
+  })
+  .get('/show',(req,res,next)=> {
+    let v = req.query.v,r=res
+    switch (v) {
+      case '1':
+        ajax({
+          url: `https://api.comments.hk`,
+          success: d=> r.send(d),
+          err: e=> r.send('null')
+        })
+        break;
+      case '2':
+        ajax({
+          url: `https://v1.hitokoto.cn`,
+          success: d=> r.send(d),
+          err: e=> r.send('null')
+        })
+        break;
+      case '3':
+        ajax({
+          url: `https://v2.jinrishici.com/one.json`,
+          success: d=> r.send(d),
+          err: e=> r.send('null')
+        })
+        break;
+      default:
+        r.send('请传递1,2')
+    }
+  })
 router.get('/',(req,res,next)=> {
   res.send(`<pre>
     ♐️ 工具系列,致力于提高效率
@@ -141,7 +196,14 @@ router.get('/',(req,res,next)=> {
         v=2     也是妹子图(同上)
         v=3     也是妹子图,不过是动漫(json数据)
           count 返回数量,最多传递100个,最少传递5个
-
+      /qq                  302返回QQ头像,需要传递number=qq
+      /pan                 查询百度云盘提取密码
+        v=1     稳定接口
+        v=2     不稳定接口
+      /show                一句话,装逼必备
+        v=1     网易云热评
+        v=2     一言骚话
+        v=3     古诗,装逼必备
   </pre>`)
 })
 module.exports = router

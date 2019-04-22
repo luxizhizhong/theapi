@@ -1,5 +1,6 @@
 
 ## 反向代理
+
 使用此接口可以反向代理,达到跨域的目的
 
 _**get** /proxy/**_
@@ -12,12 +13,15 @@ curl http://localhost:3000/proxy/https://api.isoyu.com/index.php/api/News/banner
 ```
 
 ## utils
+
 > 意在便捷的使用`API`
  
 #### 时间
+
 _**get** /utils/time_
 
 #### 网易云音乐
+
 直接获取音乐真实地址,需要传递歌曲`id`
 
 _**get** /utils/nem/dl?id=&_
@@ -39,12 +43,14 @@ _**get** /utils/nem/lyric?id=&_
 _**get** /utils/nem/song?id=&_
 
 #### 返回文本
+
 在有些地方,这个需求显得很有用
 意在直接返回文本,必须传入文本
 
 _**get** /utils/txt/&_
 
 #### markdown 在线预览(测试)
+
 markdown在下预览,我觉得是很实用的,所以就添加了这个接口
 (这个接口在测试,不稳定)
 需要传递`url`
@@ -52,6 +58,7 @@ markdown在下预览,我觉得是很实用的,所以就添加了这个接口
 _**get** /utils/md?url=&_
 
 #### bing美图
+
 此接口可返回`bing`美图,一个是`json`接口,另一个直接`302`到真实链接
 
 _**get** /utils/bing_
@@ -59,6 +66,7 @@ _**get** /utils/bing_
 _**get** /utils/bing?type=img_ (直接返回图片)
 
 #### 妹子图
+
 返回的妹子图都是拿别人的接口
 
 _**get** /utils/mm?v=&?count_
@@ -69,7 +77,31 @@ _**get** /utils/mm?v=&?count_
 - 3 : 动漫图
   - 可以传递一个`count`,如果传递的是一个`数值`,表示返回的数组个数(理论上5-100),若部位数值将返回全部
 
+#### QQ头像
+
+为了方便,写了一个直接返回qq头像地址的接口
+
+_**get** /utils/qq_
+
+#### 百度云盘提取密码查询
+
+目前有两个接口,一个是公开的,一个是`hack`到了,暂不稳定.
+v=1 稳定接口
+v=2 不稳定接口测试接口
+
+_**get** /utils/pan?v=&&url=&_
+
+#### 一句话(装逼必备)
+
+装逼用的,有三个源
+v=1 网易云热评
+v=2 一言骚话
+v=3 古诗,装逼必备
+
+_**get** /utils/show?v=&_
+
 ## 葫芦侠
+
 > by@[d1y](https://github.com/d1y) 2019.01.22 葫芦侠版本号: 3.5.0.83.3
 
 #### 游戏搜索建议

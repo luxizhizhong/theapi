@@ -24,34 +24,3 @@ See document 🚥 : [docs](docs.md)
 ```
 
 open in browser: http://localhost:3000
-
-### tree
-```console
-├── README.md
-├── app.js
-├── bin
-│   └── www
-├── docs.md
-├── node_modules
-├── package.json
-├── public
-│   ├── favicon.ico
-│   ├── files
-│   ├── images
-│   ├── javascripts
-│   └── stylesheets
-├── routes
-│   ├── docs.js
-│   ├── huluxia.js
-│   ├── index.js
-│   └── utils.js
-├── utils
-│   ├── api.js
-│   ├── http.js
-│   └── line.js
-├── views
-│   ├── docs.jade
-│   ├── error.jade
-│   ├── index.jade
-│   └── markdown.jade
-```

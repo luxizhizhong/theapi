@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "anime": "rm -rf public/files && cd public && mkdir files && cd files && wget -O sinetxt.txt https://files.catbox.moe/o1jh26.txt",
-    "start": "node ./bin/www"
+    "start": "nodemon ./bin/www"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
